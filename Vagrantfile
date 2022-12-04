@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 # Vagrantfile
 # For building k8s node
 
@@ -27,7 +30,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/focal64"
 	
   nodes.each do |node|
-    config.vm.define node[:name] do |nodeconfig|
+    config.vm.define node[:hostname] do |nodeconfig|
       nodeconfig.vm.hostname = node[:hostname]
       
       nodeconfig.vm.provider "virtualbox" do |vb|
