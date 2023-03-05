@@ -7,19 +7,19 @@
 nodes = [
   {
     :hostname => "master",
-    :eth1 => "192.168.40.1",
+    :eth1 => "192.168.56.1",
     :mem  => "4096",
     :cpu => "2"
   },
   {
     :hostname => "node1",
-    :eth1 => "192.168.40.2",
+    :eth1 => "192.168.56.2",
     :mem  => "2048",
     :cpu  => "2"
   },
   {
     :hostname => "node2",
-    :eth1 => "192.168.40.3",
+    :eth1 => "192.168.56.3",
     :mem  => "2048",
     :cpu  => "2"
   }
@@ -43,7 +43,8 @@ Vagrant.configure(2) do |config|
           "--cpus", node[:cpu]
         ]
       end
+      config.vm.network :private_network, ip: node[:eth1]
     end
   end
-  # config.vm.provision :shell, path: "setup.sh"
+  config.vm.provision :shell, path: "./build_k8s_tool.sh"
 end
